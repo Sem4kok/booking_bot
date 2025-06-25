@@ -35,10 +35,14 @@ func (a *App) GetMe() (*models.User, error) {
 	}
 	defer resp.Body.Close()
 
-	var u *models.User
-	if err := json.NewDecoder(resp.Body).Decode(u); err != nil {
+	var r models.APIResponse[models.User]
+	if err := json.NewDecoder(resp.Body).Decode(&r); err != nil {
 		return nil, fmt.Errorf("%s : %w", op, err)
 	}
 
-	return u, nil
+	if !r.OK {
+		return nil, fmt.Errorf("%s : API returns not ok", op)
+	}
+
+	return &r.Result, nil
 }

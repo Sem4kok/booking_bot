@@ -5,7 +5,7 @@ type User struct {
 	IsBot                   bool   `json:"is_bot"`
 	FirstName               string `json:"first_name"`
 	LastName                string `json:"last_name"`
-	UserName                string `json:"user_name"`
+	UserName                string `json:"username"`
 	LanguageCode            string `json:"language_code"`
 	IsPremium               bool   `json:"is_premium"`
 	AddedToAttachmentMenu   bool   `json:"added_to_attachment_menu"`
