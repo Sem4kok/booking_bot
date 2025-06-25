@@ -17,6 +17,7 @@ func TestNewBot(t *testing.T) {
 	require.Equal(t, "Carl", b.name, "name must be initialized")
 	require.Equal(t, "About", b.about, "about must be initialized")
 	require.Equal(t, "Description", b.description, "description must be initialized")
+	require.NotNil(t, b.app, "app must be initialized")
 
 	b = NewBot()
 
@@ -24,4 +25,5 @@ func TestNewBot(t *testing.T) {
 	require.Equal(t, "", b.name)
 	require.Equal(t, "", b.about)
 	require.Equal(t, "", b.description)
+	require.NotNil(t, b.app, "app must be initialized")
 }
