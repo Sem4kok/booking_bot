@@ -1,5 +1,7 @@
 package bot
 
+import "booking_bot/internal/models"
+
 type Bot struct {
 	token       string
 	name        string
@@ -41,4 +43,10 @@ func NewBot(opts ...Option) *Bot {
 	}
 
 	return b
+}
+
+func GetMe() *models.User {
+	u := &models.User{}
+
+	return u
 }
