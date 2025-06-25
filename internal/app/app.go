@@ -1,10 +1,11 @@
 package app
 
 import (
-	"booking_bot/internal/models"
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	"booking_bot/internal/models"
 )
 
 type App struct {
