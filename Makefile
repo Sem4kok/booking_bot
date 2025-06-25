@@ -7,5 +7,5 @@ build: tidy
 run: build
 	@./bin/app
 
-test:
+test: tidy
 	@go test -v ./...
