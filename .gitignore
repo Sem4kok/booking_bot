@@ -1,0 +1,5 @@
+bin
+go.mod
+*.iml
+*.xml
+*.idea
