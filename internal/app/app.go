@@ -1,8 +1,10 @@
 package app
 
 import (
+	"booking_bot/internal/logger"
 	"encoding/json"
 	"fmt"
+	"go.uber.org/zap"
 	"net/http"
 
 	"booking_bot/internal/models"
@@ -10,13 +12,17 @@ import (
 
 type App struct {
 	plate string
+	lg    *zap.Logger
 	c     *http.Client
 }
 
 func NewApp(token string) *App {
 	return &App{
 		plate: fmt.Sprintf("https://api.telegram.org/bot%s/", token),
-		c:     &http.Client{},
+		lg: logger.Lg.With(
+			zap.String("service", "app"),
+		),
+		c: &http.Client{},
 	}
 }
 

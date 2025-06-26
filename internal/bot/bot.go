@@ -2,11 +2,14 @@ package bot
 
 import (
 	"booking_bot/internal/app"
+	"booking_bot/internal/logger"
 	"booking_bot/internal/models"
+	"go.uber.org/zap"
 )
 
 type Bot struct {
 	app         *app.App
+	lg          *zap.Logger
 	token       string
 	name        string
 	about       string
@@ -47,6 +50,9 @@ func NewBot(opts ...Option) *Bot {
 	}
 
 	b.app = app.NewApp(b.token)
+	b.lg = logger.Lg.With(
+		zap.String("service", "bot"),
+	)
 
 	return b
 }
@@ -54,6 +60,10 @@ func NewBot(opts ...Option) *Bot {
 func (b *Bot) GetMe() (*models.User, error) {
 	u, err := b.app.GetMe()
 	if err != nil {
+		b.lg.Info(
+			"error occurred",
+			zap.String("err", err.Error()),
+		)
 		return nil, err
 	}
 
